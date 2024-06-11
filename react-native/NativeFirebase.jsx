@@ -1,4 +1,4 @@
-
+//create src/utils/pusNotification.jsx
 import {PermissionsAndroid} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 export const requestUserPermission = async () => {
@@ -26,9 +26,18 @@ export const getToken = async () => {
   }
 };
 
+///main App.jsx
+import {View, Text, Alert} from 'react-native';
+import React, {useEffect} from 'react';
+import messaging from '@react-native-firebase/messaging';
+import {requestUserPermission} from './src/PushNotification';
 
+const App = () => {
+  // Note that an async function or a function that returns a Promise
+  // is required for both subscribers.
 
- requestUserPermission();
+  useEffect(() => {
+    requestUserPermission();
     async function onMessageReceived(message) {
       console.log(message); // Hello world!
       Alert.alert(`Hello ${message}`); // Hello world
@@ -38,3 +47,14 @@ export const getToken = async () => {
     // }
     messaging().onMessage(onMessageReceived);
     messaging().setBackgroundMessageHandler(onMessageReceived);
+  }, []);
+
+  return (
+    <View>
+      <Text>App</Text>
+    </View>
+  );
+};
+
+export default App;
+
