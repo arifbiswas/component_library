@@ -1,0 +1,1 @@
+.well-known file - to setup any react or any client site to copy under the public folder
